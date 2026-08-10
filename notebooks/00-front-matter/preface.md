@@ -18,7 +18,7 @@ checked in code against something the calculation did not assume.
 
 ```{admonition} The course is complete, and it stays live
 :class: note
-All 55 notebooks are published. Everything here is finished work in a strong
+All 56 notebooks are published. Everything here is finished work in a strong
 sense: every notebook executes end to end on every commit, and every one of its
 checks passes before the page rebuilds — so if a claim in the prose has drifted
 from what the code actually computes, the build says so rather than the reader
@@ -28,7 +28,7 @@ the repository); what will not happen is a page that quietly stops running.
 
 ## What this is
 
-Fifty-five Jupyter notebooks in ten chapters, plus a Prologue and an Epilogue.
+Fifty-four Jupyter notebooks in ten chapters, plus a Prologue and an Epilogue.
 Each notebook opens with a review of the mathematics it needs, then works
 through six to ten exercises. Every exercise has three parts: a statement that
 names every object you compute with, a reference solution, and a **validation**

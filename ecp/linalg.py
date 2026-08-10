@@ -1366,9 +1366,11 @@ def toy_web():
     """A six-page web with a dangling node, for PageRank.
 
     Small enough to draw and to diagonalise exactly, and deliberately built with
-    the two pathologies that motivate Google's damping factor: page 4 links
-    nowhere (a dangling node, so the transition matrix is not stochastic) and
-    pages 4-5 form a group with no link back to the rest.
+    the pathology that motivates Google's damping factor: pages 4 and 5 link
+    only to each other and never back to the rest, so the surfer who reaches
+    them is trapped and the un-damped chain has no unique limit. (Every page
+    here does have an out-link, so the transition matrix IS column stochastic —
+    a dangling node would be a second, separate pathology.)
 
     Returns
     -------

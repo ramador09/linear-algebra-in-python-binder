@@ -137,7 +137,13 @@ def close(
     # Worst-element headroom: allowed_i / |err_i| under the allclose criterion
     # |err_i| <= atol + rtol*|expected_i|. This is what the margin report reads.
     err_elem = np.abs(g - e)
-    allowed_elem = atol + rtol * np.abs(e)
+    # Broadcast to err_elem's shape before indexing. `expected` is very often a
+    # bare scalar (31 call sites in this course), which leaves allowed_elem at
+    # size 1 while i_worst is an index into the full array -- so the margin
+    # bookkeeping raised IndexError from inside the validator whenever the
+    # worst element was not the first. Every existing call happened to put it
+    # first, so the course stayed green over a latent crash.
+    allowed_elem = np.broadcast_to(atol + rtol * np.abs(e), err_elem.shape)
     worst = float(np.max(err_elem)) if err_elem.size else 0.0
     with np.errstate(divide="ignore"):
         ratios = np.where(err_elem > 0, allowed_elem / np.maximum(err_elem, 1e-300),
